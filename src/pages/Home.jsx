@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 
+// Página inicial do App.
 export default function Home() {
   return (
     <>

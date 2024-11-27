@@ -2,20 +2,18 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa"; 
 import "leaflet/dist/leaflet.css";
 import { fetchMediaItems } from "../components/consume_api";
-import { getImageForMediaType } from "../components/getimage";
+import { getImageForMediaType } from "../components/get_image";
 
 // Função para criar ícone dinâmico
 const createIcon = (mediaType) => {
   return new L.Icon({
     iconUrl: getImageForMediaType(mediaType),
-    iconSize: [25, 41],
+    iconSize: [45, 45],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-    shadowSize: [41, 41],
   });
 };
 
@@ -23,6 +21,7 @@ export default function MediaMap() {
   const [mediaItems, setMediaItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchText, setSearchText] = useState(""); // Estado para o texto de busca
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,16 +37,26 @@ export default function MediaMap() {
   }
 
   return (
-    <div className="h-full w-full relative">
-      <div className="absolute bottom-16 left-0 right-0 z-[1000] px-3">
-        <input
-          type="text"
-          placeholder="Buscar por nome"
-          className="w-full p-2 rounded-lg shadow-lg border border-blue-300 bg-white/90 backdrop-blur-s"
-        />
+    <div className="h-full w-full relative flex flex-col">
+      {/* Barra de pesquisa fixa no topo */}
+      <div className="bg-gray-700 p-4 shadow-lg w-full">
+        <div className="relative w-full max-w-4xl mx-auto">
+          <input
+            type="text"
+            placeholder="Exemplo: Retratos Fantasmas"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            className="w-full p-4 pl-10 rounded-full border-2 border-blue-500 text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
+          />
+          {/* Ícone de pesquisa */}
+          <div className="absolute top-0 left-0 flex items-center pl-3 h-full">
+            <FaSearch className="text-white text-xl" />
+          </div>
+        </div>
       </div>
 
-      <div className="h-full w-full">
+      {/* Mapa */}
+      <div className="flex-1 w-full">
         <MapContainer
           center={[-8.05428, -34.8813]}
           zoom={13}
@@ -65,16 +74,21 @@ export default function MediaMap() {
               icon={createIcon(item.media_type)}
             >
               <Popup>
-                <strong>{item.title}</strong>
-                <br />
-                Tipo: {item.media_type}
-                <br />
-                <button
-                  className="text-blue-500 underline"
-                  onClick={() => navigate(`/details/${item.id}`)}
-                >
-                  Ver detalhes
-                </button>
+                {/* Title Styling */}
+                <div className="flex flex-col space-y-2">
+                  <strong className="text-lg font-semibold text-blue-600">{item.title}</strong>
+
+                  {/* Media Type */}
+                  <span className="text-sm text-gray-500">{item.media_type} do recife</span>
+
+                  {/* Action Button */}
+                  <button
+                    className="mt-3 w-full py-2 px-4 bg-blue-500 text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition-colors"
+                    onClick={() => navigate(`/details/${item.id}`)}
+                  >
+                    Descobrir
+                  </button>
+                </div>
               </Popup>
             </Marker>
           ))}
