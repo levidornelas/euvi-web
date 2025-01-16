@@ -2,9 +2,11 @@
 export const getImageForMediaType = (mediaType) => {
   switch (mediaType) {
     case 'Filmes':
-      return '/film.png' // Imagem para filme
-    case 'Novelas':
-      return '/logo.png'
+      return '/films.svg' // Imagem para filme
+    case 'Livros':
+      return '/books.svg'
+    case 'Músicas':
+      return '/music.svg'
     default:
       return null;
   }

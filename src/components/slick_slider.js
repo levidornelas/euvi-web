@@ -1,11 +1,9 @@
-// Slider para o carrossel de imagem em media_detalhes.jsx
-
 import React from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const SlickSlider = ({ images }) => {
+const SlickSlider = ({ images, captions }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -13,6 +11,7 @@ const SlickSlider = ({ images }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    arrows: false,
     autoplaySpeed: 3000,
     responsive: [
       {
@@ -35,16 +34,18 @@ const SlickSlider = ({ images }) => {
   return (
     <Slider {...settings}>
       {images.map((url, index) => (
-        <div
-          key={index}
-          className="relative w-full"
-        >
-          <div className="w-full h-[300px] overflow-hidden rounded-lg border-4 border-gray-300 shadow-lg">
+        <div key={index} className="relative w-full">
+          <div className="w-full h-[370px] overflow-hidden rounded-lg shadow-lg">
             <img
               src={url}
               alt={`Image ${index}`}
               className="w-full h-full object-cover"
             />
+            {captions && captions[index] && (
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-center">
+                {captions[index]}
+              </div>
+            )}
           </div>
         </div>
       ))}
