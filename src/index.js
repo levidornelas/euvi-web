@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
-import RootLayout from "./Layout";
+import { BrowserRouter, Routes, Route } from "react-router-dom";  // Changed to react-router-dom
+import RootLayout from "./Layout.jsx";
 import './index.css';
-import Home from "./pages/home";
-import Map from "./pages/map/map";
-import Details from "./pages/map/media_detalhes";
-import LoginScreen from "./pages/users/login";
-import Cadastro from "./pages/users/cadastro";
-import UserProfile from "./pages/profile/profile";
-import FirstOnboard from "./pages/onboarding/onboarding1";
-import SecondOnboard from "./pages/onboarding/onboarding2";
-import ThirdOnboard from "./pages/onboarding/onboarding3";
-import Info from "./pages/profile/profileinfo";
+import Home from "./pages/home.jsx";
+import Map from "./pages/map/map.jsx";
+import Details from "./pages/map/media_detalhes.jsx";
+import LoginScreen from "./pages/users/login.jsx";
+import Cadastro from "./pages/users/cadastro.jsx";
+import UserProfile from "./pages/profile/profile.jsx";
+import FirstOnboard from "./pages/onboarding/onboarding1.jsx";
+import SecondOnboard from "./pages/onboarding/onboarding2.jsx";
+import ThirdOnboard from "./pages/onboarding/onboarding3.jsx";
+import Info from "./pages/profile/profileinfo.jsx";
 
 const root = document.getElementById("root");
 
