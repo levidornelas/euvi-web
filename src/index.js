@@ -13,6 +13,7 @@ import FirstOnboard from "./pages/onboarding/onboarding1.jsx";
 import SecondOnboard from "./pages/onboarding/onboarding2.jsx";
 import ThirdOnboard from "./pages/onboarding/onboarding3.jsx";
 import Info from "./pages/profile/profileinfo.jsx";
+import { Analytics } from "@vercel/analytics/react";
 
 const root = document.getElementById("root");
 
@@ -32,6 +33,7 @@ ReactDOM.createRoot(root).render(
         <Route path="/o2" element={<SecondOnboard />} />
         <Route path="/o3" element={<ThirdOnboard />} />
       </Routes>
+      <Analytics /> 
     </RootLayout>
   </BrowserRouter>
 );
