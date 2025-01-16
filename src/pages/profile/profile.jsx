@@ -4,7 +4,7 @@ import { authentication, db } from '../../firebasefunctions/firebase_config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { User, LogOut, Eye } from 'lucide-react';
-import BottomNavbar from '../../components/navBar';
+import ProfileNav from '../../components/profilenav';
 
 export default function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -77,7 +77,9 @@ export default function UserProfile() {
   }
 
   // Extract the first letter of the first and last name
-  const initials = `${userProfile.firstName.charAt(0)}${userProfile.lastName.charAt(0)}`;
+  // Extract the first letter of the first and last name in uppercase
+  const initials = `${userProfile.firstName.charAt(0).toUpperCase()}${userProfile.lastName.charAt(0).toUpperCase()}`;
+
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
@@ -131,7 +133,7 @@ export default function UserProfile() {
           </div>
         </div>
       </div>
-      <BottomNavbar />
+      <ProfileNav />
     </div>
 
   );
