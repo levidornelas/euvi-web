@@ -122,7 +122,7 @@ export default function MediaMap() {
   return (
     <>
       <div className="absolute top-7 right-4 z-50">
-        <img src="/logo.svg" alt="Logo" className="h-16" />
+        <img src="/logomapa.svg" alt="Logo" className="h-16" />
       </div>
 
       <div className="flex flex-col h-screen w-full md:overflow-y-hidden sm:overflow-visible">
