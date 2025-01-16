@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 // Página inicial do App.
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <div></div>

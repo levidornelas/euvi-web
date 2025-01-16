@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";  // Changed to react-router-dom
 import RootLayout from "./Layout.jsx";
 import './index.css';
-import Home from "./pages/home.jsx";
+import HomePage from "./home.jsx";
 import Map from "./pages/map/map.jsx";
 import Details from "./pages/map/media_detalhes.jsx";
 import LoginScreen from "./pages/users/login.jsx";
@@ -21,7 +21,7 @@ ReactDOM.createRoot(root).render(
     <RootLayout>
       <Routes>
         {/* Rotas públicas */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/map" element={<Map />} />
