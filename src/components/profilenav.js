@@ -42,7 +42,7 @@ export default function ProfileNav() {
       {/* Bottom Navbar */}
       <div className="absolute bottom-0 w-full bg-[#145CCC] text-white flex justify-around py-3 shadow-md h-14 sm:h-18">
         {/* Ícone de mapa */}
-        <Link to="/" className="flex flex-col items-center text-white">
+        <Link to="/about" className="flex flex-col items-center text-white">
           <FaEye className="text-xl" />
           <span className="text-xs">Sobre</span>
         </Link>

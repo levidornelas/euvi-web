@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Tooltip, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Tooltip, Popup, useMapEvents} from "react-leaflet";
 import L from "leaflet";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
@@ -42,14 +42,32 @@ export default function MediaMap() {
     return savedRecents ? JSON.parse(savedRecents) : [];
   });
   const [userLocation, setUserLocation] = useState(null);
+  const [mapCenter, setMapCenter] = useState([-8.05428, -34.8813]); 
   const navigate = useNavigate();
+  const [mapZoom, setMapZoom] = useState(14);
 
+  useEffect(() => {
+    setMapZoom(14); // Defina um zoom inicial se necessário
+  }, []);
+
+  const MapEventHandler = () => {
+    useMapEvents({
+      zoomend: (e) => {
+        setMapZoom(e.target.getZoom());
+      },
+    });
+    return null;
+  };
+
+  // Função atualizada para obter localização do usuário
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
+          // Atualiza tanto a localização do usuário quanto o centro do mapa
           setUserLocation({ latitude, longitude });
+          setMapCenter([latitude, longitude]);
         },
         (error) => {
           console.log("Erro ao obter localização", error);
@@ -62,10 +80,9 @@ export default function MediaMap() {
 
   useEffect(() => {
     fetchMediaItems(setMediaItems, setLoading, setError);
-    getUserLocation();
+    getUserLocation(); // Obtém a localização quando o componente monta
   }, []);
 
-  // Atualiza o localStorage quando recentItems mudar
   useEffect(() => {
     localStorage.setItem('recentItems', JSON.stringify(recentItems));
   }, [recentItems]);
@@ -128,16 +145,16 @@ export default function MediaMap() {
       <div className="flex flex-col h-screen w-full md:overflow-y-hidden sm:overflow-visible">
         <div className="relative flex-grow w-full">
           <MapContainer
-            center={[-8.05428, -34.8813]}
-            zoom={13}
+            center={mapCenter}
+            zoom={mapZoom}
             className="h-full w-full z-0"
             attributionControl={true}
           >
+            <MapEventHandler />
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-
             {mediaItems.map((item) => (
               <Marker
                 key={item.id}
@@ -147,9 +164,16 @@ export default function MediaMap() {
                   click: () => handlePinClick(item),
                 }}
               >
-                <Tooltip permanent direction="right" offset={[15, -30]} className="!bg-transparent !p-0 !border-none !shadow-none">
-                  <div className="text-black text-xs font-semibold">{item.title}</div>
-                </Tooltip>
+                {mapZoom >= 14 && (
+                  <Tooltip
+                    permanent
+                    direction="right"
+                    offset={[15, -30]}
+                    className="!bg-transparent !p-0 !border-none !shadow-none"
+                  >
+                    <div className="text-black text-xs font-semibold">{item.title}</div>
+                  </Tooltip>
+                )}
               </Marker>
             ))}
 
@@ -158,9 +182,7 @@ export default function MediaMap() {
                 position={[userLocation.latitude, userLocation.longitude]}
                 icon={createUserLocationIcon()}
               >
-                <Popup>
-                  Você está aqui
-                </Popup>
+                <Popup>Você está aqui</Popup>
               </Marker>
             )}
           </MapContainer>
@@ -246,7 +268,7 @@ export default function MediaMap() {
                       onClick={() => handlePinClick(item)}
                     >
                       <div className="flex items-center space-x-3">
-                        <CgPin className="text-blue-500 text-lg" />
+                          <CgPin className="text-blue-500 text-lg" />
                         <span className="text-gray-800 text-base sm:text-base">{item.title}</span>
                       </div>
                     </div>

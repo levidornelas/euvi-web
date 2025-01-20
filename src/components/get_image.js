@@ -1,12 +1,13 @@
-// Função que escolhe um ícone do mapa para cada tipo de mídia; COMEÇAR COM LETRA MAIUSCULA !!
 export const getImageForMediaType = (mediaType) => {
   switch (mediaType) {
     case 'Filmes':
-      return '/films.svg' // Imagem para filme
+      return '/films.svg' 
     case 'Livros':
       return '/books.svg'
     case 'Músicas':
       return '/music.svg'
+    case 'Artes':
+      return '/art.svg'
     default:
       return null;
   }
