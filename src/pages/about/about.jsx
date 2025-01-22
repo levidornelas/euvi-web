@@ -36,20 +36,24 @@ export default function AboutUs() {
 
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-3xl mb-4">
           <h2 className="text-2xl font-semibold mb-2 text-black">Contatos</h2>
-          <div className="">
+          <div className="flex gap-8">
             <a
               href="https://www.instagram.com/euvi.tech/"
               aria-label="Instagram"
               target="blank"
+              className="flex items-center gap-2"
             >
               <FaInstagram className="text-3xl text-black" />
+              <span className="text-black">Instagram</span>
             </a>
             <a
               href="https://www.linkedin.com/company/eu-vi/"
               aria-label="LinkedIn"
               target="blank"
+              className="flex items-center gap-2"
             >
-              <FaLinkedin className="text-3xl text-[#0077B5] mt-3" />
+              <FaLinkedin className="text-3xl text-[#0077B5]" />
+              <span className="text-black">LinkedIn</span>
             </a>
           </div>
         </div>

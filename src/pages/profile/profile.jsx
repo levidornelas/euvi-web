@@ -104,7 +104,9 @@ export default function UserProfile() {
 
           {/* About Project */}
           <div>
-            <div className="flex items-center mb-2 cursor-pointer">
+            <div className="flex items-center mb-2 cursor-pointer"
+            onClick={() => navigate('/about')}
+            >
               <Eye className="mr-2 text-black" />
               <span className="text-black">Sobre o projeto</span>
             </div>
