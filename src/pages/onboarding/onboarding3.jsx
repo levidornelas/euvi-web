@@ -14,7 +14,7 @@ export default function ThirdOnboard() {
 
       {/* Botão Próximo */}
       <Link to="/map" className="w-full flex justify-center">
-        <button className="w-full max-w-xs p-3 text-lg font-medium text-white bg-[#145CCC] rounded-full shadow-md transition-all hover:bg-[#104a99]">
+        <button className="w-full max-w-xs p-3 text-lg font-medium text-white bg-[#145CCC] rounded-full shadow-md transition-all hover:bg-[#104a99] mb-6">
           Explorar o mapa
         </button>
       </Link>
