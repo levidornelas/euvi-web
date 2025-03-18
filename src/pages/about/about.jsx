@@ -1,5 +1,5 @@
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
-import BottomNavbar from "../../components/navBar";
+import BottomNavbar from "../../components/nav_bar";
 
 export default function AboutUs() {
   return (

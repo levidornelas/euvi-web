@@ -4,27 +4,7 @@ import { MapPin, Clock, Info, ChevronLeft, Link as LinkIcon, Map } from 'lucide-
 import { fetchItemDetails } from '../../components/fetch_details';
 import SlickSlider from '../../components/slick_slider';
 import { Link } from 'react-router-dom';
-
-const ImageGallery = ({ images, setSelectedImage }) => {
-  return (
-    <div className="grid grid-cols-3 gap-4 p-4">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className="relative overflow-hidden rounded-lg shadow-lg hover:opacity-90 transition-opacity cursor-pointer"
-          onClick={() => setSelectedImage(image)}
-        >
-          <img
-            src={image}
-            alt={`Gallery ${index + 1}`}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
+import ImageGallery from '../../components/image_gallery';
 
 export default function Details() {
   const { id } = useParams();
@@ -74,7 +54,7 @@ export default function Details() {
   );
 
   const tabs = [
-    { key: 'about', label: 'História' },
+    { key: 'about', label: 'Sobre' },
     { key: 'author', label: 'Autor' },
     { key: 'info', label: 'Local' },
     { key: 'gallery', label: 'Galeria' },
@@ -138,7 +118,7 @@ export default function Details() {
       <div className="mb-8">
         {activeTab === 'about' && (
           <div className="space-y-4 overflow-hidden bg-gray-200 p-4 rounded-lg">
-            <h2 className="text-lg font-semibold mb-2 text-black">História</h2>
+            <h2 className="text-lg font-semibold mb-2 text-black">Sobre o espaço</h2>
             {item.general_info ? (
               item.general_info.split('\n').map((paragraph, index) => (
                 <p key={index} className="text-black">{paragraph}</p>
@@ -217,18 +197,6 @@ export default function Details() {
                 ))}
               </div>
             )}
-
-            <div className="flex justify-center">
-              {item.maps && (
-                <button
-                  className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition duration-300 ease-in-out flex items-center justify-center space-x-2"
-                  onClick={() => window.open(item.maps)}
-                >
-                  <Map size={20} />
-                  <span className="text-sm font-semibold">Como chegar</span>
-                </button>
-              )}
-            </div>
           </>
         )}
 

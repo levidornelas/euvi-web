@@ -4,7 +4,7 @@ import { authentication, db } from '../../firebasefunctions/firebase_config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { User, LogOut, Eye } from 'lucide-react';
-import ProfileNav from '../../components/profilenav';
+import ProfileNav from '../../components/profile_navbar';
 
 export default function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);

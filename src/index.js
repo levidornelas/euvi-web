@@ -12,7 +12,7 @@ import UserProfile from "./pages/profile/profile.jsx";
 import FirstOnboard from "./pages/onboarding/onboarding1.jsx";
 import SecondOnboard from "./pages/onboarding/onboarding2.jsx";
 import ThirdOnboard from "./pages/onboarding/onboarding3.jsx";
-import Info from "./pages/profile/profileinfo.jsx";
+import Info from "./pages/profile/profile_info.jsx";
 import AboutUs from "./pages/about/about.jsx";
 import { Analytics } from "@vercel/analytics/react";
 

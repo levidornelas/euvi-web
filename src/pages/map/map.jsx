@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Tooltip, Popup, useMapEvents} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Tooltip, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
@@ -10,7 +10,7 @@ import SlickSlider from "../../components/slick_slider";
 import { CgPin } from "react-icons/cg";
 import { MdOutlineSearch } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
-import BottomNavbar from "../../components/navBar";
+import BottomNavbar from "../../components/nav_bar";
 
 const createIcon = (mediaType) => {
   return new L.Icon({
@@ -42,7 +42,7 @@ export default function MediaMap() {
     return savedRecents ? JSON.parse(savedRecents) : [];
   });
   const [userLocation, setUserLocation] = useState(null);
-  const [mapCenter, setMapCenter] = useState([-8.05428, -34.8813]); 
+  const [mapCenter, setMapCenter] = useState([-8.05428, -34.8813]);
   const navigate = useNavigate();
   const [mapZoom, setMapZoom] = useState(14);
 
@@ -91,7 +91,7 @@ export default function MediaMap() {
     if (!searchQuery) return [];
 
     return mediaItems.filter((item) =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      item.location.toLowerCase().includes(searchQuery.toLowerCase())
     ).slice(0, 2);
   };
 
@@ -138,10 +138,6 @@ export default function MediaMap() {
 
   return (
     <>
-      <div className="absolute top-7 right-4 z-50">
-        <img src="/logomapa.svg" alt="Logo" className="h-16" />
-      </div>
-
       <div className="flex flex-col h-screen w-full md:overflow-y-hidden sm:overflow-visible">
         <div className="relative flex-grow w-full">
           <MapContainer
@@ -205,8 +201,11 @@ export default function MediaMap() {
               </button>
 
               <div className="text-black top-4">
-                <h1 className="text-2xl font-medium top-4 mb-3">{selectedPin.title}</h1>
-                <SlickSlider images={[selectedPin.imagem_cartaz, selectedPin.imagem_obra, selectedPin.imagem_local]} />
+                <h1 className="text-2xl font-medium top-4 mb-3">{selectedPin.location}</h1>
+                <SlickSlider
+                  images={[selectedPin.imagem_cartaz, selectedPin.imagem_obra, selectedPin.imagem_local]}
+                  captions={[selectedPin.legenda_1, selectedPin.legenda_2, selectedPin.legenda_3]}
+                />
 
                 <div className="mt-8 flex justify-center">
                   <button
@@ -268,7 +267,7 @@ export default function MediaMap() {
                       onClick={() => handlePinClick(item)}
                     >
                       <div className="flex items-center space-x-3">
-                          <CgPin className="text-blue-500 text-lg" />
+                        <CgPin className="text-blue-500 text-lg" />
                         <span className="text-gray-800 text-base sm:text-base">{item.title}</span>
                       </div>
                     </div>

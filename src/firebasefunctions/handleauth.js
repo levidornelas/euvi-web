@@ -25,7 +25,7 @@ export const PrivateRoute = ({ element }) => {
 
   useEffect(() => {
     if (!isAuthenticated && !loading) {
-      navigate("/login"); // Redireciona para a página de login se não autenticado
+      navigate("/map"); // Redireciona para a página de login se não autenticado
     }
   }, [isAuthenticated, loading, navigate]);
   if (loading) {
