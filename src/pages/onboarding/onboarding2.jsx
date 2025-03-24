@@ -11,6 +11,13 @@ export default function SecondOnboard() {
         Pular
       </Link>
 
+      <Link
+        to="/o1"
+        className="absolute top-6 left-6 text-[#0671E0] text-lg font-medium hover:underline"
+      >
+        Voltar
+      </Link>
+
       {/* Imagem principal */}
       <div className="flex-grow flex items-center justify-center">
         <img

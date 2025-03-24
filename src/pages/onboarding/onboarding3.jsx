@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 
+
 export default function ThirdOnboard() {
   return (
     <div className="flex flex-col justify-between bg-white h-screen px-6 py-10 relative">
@@ -11,6 +12,12 @@ export default function ThirdOnboard() {
           className="w-full h-auto"
         />
       </div>
+      <Link
+        to="/o2"
+        className="absolute top-6 left-6 text-[#0671E0] text-lg font-medium hover:underline"
+      >
+        Voltar
+      </Link>
 
       {/* Botão Próximo */}
       <Link to="/map" className="w-full flex justify-center">

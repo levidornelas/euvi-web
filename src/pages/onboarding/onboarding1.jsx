@@ -10,7 +10,6 @@ export default function FirstOnboard() {
       >
         Pular
       </Link>
-
       {/* Imagem principal */}
       <div className="flex-grow flex items-center justify-center">
         <img
