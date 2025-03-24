@@ -123,8 +123,8 @@ export default function MediaMap() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-full p-6 text-center">
-        <div className="animate-bounce w-16 h-16 border-4 border-t-4 border-blue-200 rounded-full mb-4"></div>
-        <p className="text-white text-lg">Carregando...</p>
+        <div className="animate-spin w-16 h-16 border-4 border-t-4 border-blue-200 rounded-full mb-8"></div>
+        <p className="text-white text-lg">Aguarde, o mapa está carregando...</p>
       </div>
     );
   }
