@@ -1,6 +1,6 @@
 export const fetchMediaItems = async (setMediaItems, setLoading, setError) => {
   try {
-    const response = await fetch('https://euvi-backend.onrender.com/api/media-items/');
+    const response = await fetch(`${process.env.REACT_APP_API_URL}media-items/`);
     if (!response.ok) {
       throw new Error('Erro ao buscar dados da API');
     }
