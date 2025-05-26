@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { MapPin, Clock, Info, ChevronLeft, Link as LinkIcon, Map } from 'lucide-react';
-import { fetchItemDetails } from '../../components/fetch_details';
+import { MapPin, Info, ChevronLeft, Link as LinkIcon } from 'lucide-react';
+import { fetchItemDetails } from '../../services/fetch_details';
 import SlickSlider from '../../components/slick_slider';
 import { Link } from 'react-router-dom';
 import ImageGallery from '../../components/image_gallery';

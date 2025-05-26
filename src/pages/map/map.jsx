@@ -4,8 +4,8 @@ import L from "leaflet";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import "leaflet/dist/leaflet.css";
-import { fetchMediaItems } from "../../components/consume_api";
-import { getImageForMediaType } from "../../components/get_image";
+import { fetchMediaItems } from "../../services/consume_api";
+import { getImageForMediaType } from '../../services/get_image'
 import SlickSlider from "../../components/slick_slider";
 import { CgPin } from "react-icons/cg";
 import { MdOutlineSearch } from "react-icons/md";

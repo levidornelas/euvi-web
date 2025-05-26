@@ -38,7 +38,7 @@ const SlickSlider = ({ images, captions }) => {
           <div className="w-full h-[370px] overflow-hidden rounded-lg shadow-lg">
             <img
               src={url}
-              alt={`Image ${index}`}
+              alt={`Imagem ${index}`}
               className="w-full h-full object-cover"
             />
             {captions && captions[index] && (
