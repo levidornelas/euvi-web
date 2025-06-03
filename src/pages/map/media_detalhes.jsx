@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { MapPin, Info, ChevronLeft, Link as LinkIcon } from 'lucide-react';
+import { MapPin, Info, Speech, ChevronLeft, Link as LinkIcon } from 'lucide-react';
 import { fetchItemDetails } from '../../services/fetch_details';
 import SlickSlider from '../../components/slick_slider';
 import { Link } from 'react-router-dom';
@@ -18,6 +18,10 @@ export default function Details() {
   useEffect(() => {
     return () => speechSynthesis.cancel(); // limpa ao desmontar
   }, []);
+
+  useEffect(() => {
+    speechSynthesis.cancel()
+  }, [activeTab])
 
   useEffect(() => {
     const loadItemDetails = async () => {
@@ -133,9 +137,10 @@ export default function Details() {
             <h2 className="text-lg font-semibold mb-2 text-black">Sobre o espaço</h2>
             <button
               onClick={() => speak(item.general_info)}
-              className="bg-[#0650FF] rounded-full p-3 text-white mt-4 hover:bg-blue-600"
+              className="bg-[#0650FF] rounded-full p-3 text-white mt-4 hover:bg-blue-600 flex items-center gap-2"
             >
-              🔊 Ouvir texto
+              <Speech className='text-sm' />
+              Ouvir texto
             </button>
             {item.general_info ? (
               <>
@@ -164,6 +169,14 @@ export default function Details() {
             {item.autor_bio && (
               <div className="mb-4">
                 <h3 className="text-md font-semibold mb-2 text-black">Biografia</h3>
+                <button
+                  onClick={() => speak(item.general_info)}
+                  className="bg-[#0650FF] rounded-full p-3 text-white mt-4 hover:bg-blue-600 flex items-center gap-2 mb-3"
+                >
+                  <Speech className='text-sm' />
+                  Ouvir texto
+                </button>
+
                 {item.autor_bio.split('\n').map((paragraph, index) => (
                   <p key={index} className="text-black mb-2">{paragraph}</p>
                 ))}
