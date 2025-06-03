@@ -210,7 +210,7 @@ export default function MediaMap() {
                 <div className="mt-8 flex justify-center">
                   <button
                     onClick={() => navigate(`/details/${selectedPin.id}`)}
-                    className="bg-[#0650FF] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-full text-lg px-32 sm:px-24 md:px-36 py-4 text-white"
+                    className="bg-[#0650FF] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-full text-lg px-32 sm:px-24 md:px-36 py-4 text-white hover:bg-blue-600"
                   >
                     Descobrir
                   </button>

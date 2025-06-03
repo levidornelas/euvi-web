@@ -14,6 +14,11 @@ export default function Details() {
   const [activeTab, setActiveTab] = useState('about');
   const [selectedImage, setSelectedImage] = useState(null);
 
+
+  useEffect(() => {
+    return () => speechSynthesis.cancel(); // limpa ao desmontar
+  }, []);
+
   useEffect(() => {
     const loadItemDetails = async () => {
       try {
@@ -34,6 +39,13 @@ export default function Details() {
       <p className="text-white text-lg">Carregando detalhes...</p>
     </div>
   );
+
+  const speak = (text) => {
+    if (!text) return
+    speechSynthesis.cancel()
+    const textToSpeech = new SpeechSynthesisUtterance(text)
+    speechSynthesis.speak(textToSpeech)
+  }
 
   const renderError = () => (
     <div className="flex flex-col items-center justify-center h-full p-6 text-center bg-red-50">
@@ -119,10 +131,18 @@ export default function Details() {
         {activeTab === 'about' && (
           <div className="space-y-4 overflow-hidden bg-gray-200 p-4 rounded-lg">
             <h2 className="text-lg font-semibold mb-2 text-black">Sobre o espaço</h2>
+            <button
+              onClick={() => speak(item.general_info)}
+              className="bg-[#0650FF] rounded-full p-3 text-white mt-4 hover:bg-blue-600"
+            >
+              🔊 Ouvir texto
+            </button>
             {item.general_info ? (
-              item.general_info.split('\n').map((paragraph, index) => (
-                <p key={index} className="text-black">{paragraph}</p>
-              ))
+              <>
+                {item.general_info.split('\n').map((paragraph, index) => (
+                  <p key={index} className="text-black">{paragraph}</p>
+                ))}
+              </>
             ) : (
               <p className="text-black">Não há informações gerais disponíveis</p>
             )}
