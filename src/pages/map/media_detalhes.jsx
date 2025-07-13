@@ -135,13 +135,13 @@ export default function Details() {
         {activeTab === 'about' && (
           <div className="space-y-4 overflow-hidden bg-gray-200 p-4 rounded-lg">
             <h2 className="text-lg font-semibold mb-2 text-black">Sobre o espaço</h2>
-            <button
+            {/* <button
               onClick={() => speak(item.general_info)}
               className="bg-[#0650FF] rounded-full p-3 text-white mt-4 hover:bg-blue-600 flex items-center gap-2"
             >
               <Speech className='text-sm' />
               Ouvir texto
-            </button>
+            </button> */}
             {item.general_info ? (
               <>
                 {item.general_info.split('\n').map((paragraph, index) => (
@@ -169,13 +169,13 @@ export default function Details() {
             {item.autor_bio && (
               <div className="mb-4">
                 <h3 className="text-md font-semibold mb-2 text-black">Biografia</h3>
-                <button
+                {/* <button
                   onClick={() => speak(item.general_info)}
                   className="bg-[#0650FF] rounded-full p-3 text-white mt-4 hover:bg-blue-600 flex items-center gap-2 mb-3"
                 >
                   <Speech className='text-sm' />
                   Ouvir texto
-                </button>
+                </button> */}
 
                 {item.autor_bio.split('\n').map((paragraph, index) => (
                   <p key={index} className="text-black mb-2">{paragraph}</p>
